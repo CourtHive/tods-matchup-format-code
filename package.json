@@ -1,0 +1,32 @@
+{
+  "name": "tods-matchup-format-code",
+  "version": "1.0.0",
+  "description": "parse and stringify methods for working with TODS matchUp Format Codes",
+  "keywords": [
+    "example",
+    "package",
+    "tutorial"
+  ],
+  "homepage": "https://github.com/CourtHive/MatchUpFormatCode",
+  "bugs": {
+    "url": "https://github.com/CourtHive/MatchUpFormatCode/issues",
+    "email": "support@CourtHive.com"
+  },
+  "main": "matchUpFormatCode.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UserName/package-name.git"
+  },
+  "author": "Charles Allen <charles@CourtHive.com> (CourtHive.com)",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.2"
+  }
+}
