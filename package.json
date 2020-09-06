@@ -1,11 +1,11 @@
 {
   "name": "tods-matchup-format-code",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "parse and stringify methods for working with TODS matchUp Format Codes",
   "keywords": [
-    "example",
-    "package",
-    "tutorial"
+    "TODS",
+    "scoring format",
+    "tennis"
   ],
   "homepage": "https://github.com/CourtHive/MatchUpFormatCode",
   "bugs": {
