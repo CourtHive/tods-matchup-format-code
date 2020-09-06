@@ -4,7 +4,7 @@ The **[Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/T
 
 ```SET3-S:6/TB7``` is the TODS representation for "Best 2 Out Of 3 Sets (Win By Two) 6 games with Tiebreak to 7
 
-This package includes two methods to make it easier to work with TODS MatchUp Format Codes in projects related to tennis, by transforming valid format codes into JSON and valid JSON objects back into format codess.
+This package includes two methods to make it easier to work with TODS MatchUp Format Codes in projects related to tennis, by transforming valid format codes into JSON and valid JSON objects back into format codes.
 
 ## Installation
 
