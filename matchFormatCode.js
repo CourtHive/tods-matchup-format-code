@@ -1,3 +1,7 @@
+/*
+ * TODO: if the final set is NOT different then don't include in string
+ */
+
 const SET = 'SET';
 const NOAD = 'NOAD';
 const TIMED = 'timed';
@@ -8,13 +12,13 @@ const setTypes = {
    'F': FINAL
 };
 
-export const matchFormatCode = function() {
+export const matchUpFormatCode = function() {
    let fx = {};
 
    fx.stringify = (matchformatobject) => {
       if (matchformatobject && typeof matchformatobject === 'object') {
          if (matchformatobject.timed && !isNaN(matchformatobject.minutes)) return timedFormat(matchformatobject);
-         if (matchformatobject.bestOf && matchformatobject.setFormat) return setFormat(matchformatobject);
+         if (matchformatobject.bestOf && matchformatobject.setFormat) return getSetFormat(matchformatobject);
       }
    };
 
@@ -22,31 +26,34 @@ export const matchFormatCode = function() {
       return `T${matchformatobject.minutes}`;
    }
 
-   function setFormat(matchformatobject) {
-      let best_of = getNumber(matchformatobject.bestOf);
-      let bestOf = (best_of && `${SET}${best_of}`) || '';
-      let normal_set = stringifySet(matchformatobject.setFormat);
-      let normalSet = (normal_set && `S:${normal_set}`) || '';
-      let final_set = stringifySet(matchformatobject.finalSetFormat);
-      let finalSet = (final_set && !final_set.invalid && `F:${final_set}`) || '';
-      let valid = bestOf && (normal_set && !normal_set.invalid) && (!final_set || !final_set.invalid);
-      if (valid) { return [bestOf, normalSet, finalSet].filter(f=>f).join('-'); }
+   function getSetFormat(matchformatobject) {
+      let bestOfValue = getNumber(matchformatobject.bestOf);
+      let bestOfCode = (bestOfValue && `${SET}${bestOfValue}`) || '';
+      let setCountValue = stringifySet(matchformatobject.setFormat);
+      let setCode = (setCountValue && `S:${setCountValue}`) || '';
+      let finalSetCountValue = stringifySet(matchformatobject.finalSetFormat);
+      let finalSetCode = (bestOfValue > 1 && finalSetCountValue && !finalSetCountValue.invalid && `F:${finalSetCountValue}`) || '';
+      let valid = bestOfCode && (setCountValue && !setCountValue.invalid) && (!finalSetCountValue || !finalSetCountValue.invalid);
+
+      if (valid) {
+         return [bestOfCode, setCode, finalSetCode].filter(f=>f).join('-');
+      }
    }
 
    function stringifySet(setobject) {
       if (setobject) {
          if (typeof setobject === 'object') {
             if (setobject.tiebreakSet) return tiebreakFormat(setobject.tiebreakSet);
-            let setTo = getNumber(setobject.setTo);
-            if (setTo) {
-               let noAD = (setobject.NoAD && NOAD) || '';
-               let set_tiebreak = tiebreakFormat(setobject.tiebreakFormat);
-               let setTiebreak = (set_tiebreak && !set_tiebreak.invalid && `/${set_tiebreak}`) || '';;
-               let tiebreak_at = getNumber(setobject.tiebreakAt);
-               let tiebreakAt = (tiebreak_at && tiebreak_at !== setTo && `@${tiebreak_at}`) || '';
-               let valid = (!set_tiebreak || !set_tiebreak.invalid);
+            let setToValue = getNumber(setobject.setTo);
+            if (setToValue) {
+               let NoAD = (setobject.NoAD && NOAD) || '';
+               let setTiebreakValue = tiebreakFormat(setobject.tiebreakFormat);
+               let setTiebreakCode = (setTiebreakValue && !setTiebreakValue.invalid && `/${setTiebreakValue}`) || '';;
+               let tiebreakAtValue = getNumber(setobject.tiebreakAt);
+               let tiebreakAtCode = (tiebreakAtValue && tiebreakAtValue !== setToValue && `@${tiebreakAtValue}`) || '';
+               let valid = (!setTiebreakValue || !setTiebreakValue.invalid);
                if (valid) {
-                  return `${setTo}${noAD}${setTiebreak}${tiebreakAt}`;
+                  return `${setToValue}${NoAD}${setTiebreakCode}${tiebreakAtCode}`;
                } else {
                   return { invalid: true }
                }
@@ -59,7 +66,9 @@ export const matchFormatCode = function() {
 
    function tiebreakFormat(tieobject) {
       if (tieobject) {
-         if (typeof tieobject === 'object' && getNumber(tieobject.tiebreakTo)) {
+         if (typeof tieobject === 'object' && !tieobject.tiebreakTo) {
+            return '';
+         } else if (typeof tieobject === 'object' && getNumber(tieobject.tiebreakTo)) {
             return `TB${tieobject.tiebreakTo}${tieobject.NoAD ? NOAD : ''}`;
          } else {
             return { invalid: true }
@@ -94,19 +103,19 @@ export const matchFormatCode = function() {
    function parseSetFormat(formatstring) {
       if (formatstring && formatstring[1] === ':') {
          let parts = formatstring.split(':');
-         let set_type = setTypes[parts[0]];
-         let set_format = parts[1];
-         if (set_type && set_format) {
-            let tiebreakSet = set_format.indexOf('TB') === 0;
-            if (tiebreakSet) return { tiebreakSet: parseTiebreakFormat(set_format) };
+         let setType = setTypes[parts[0]];
+         let setFormatString = parts[1];
+         if (setType && setFormatString) {
+            let tiebreakSet = setFormatString.indexOf('TB') === 0;
+            if (tiebreakSet) return { tiebreakSet: parseTiebreakFormat(setFormatString) };
             let parts = formatstring.match(/^[FS]{1}:(\d+)([A-Za-z]*)/);
             let NoAD = (parts && isNoAD(parts[2])) || false;
             let validNoAD = (!parts || !parts[2]) || NoAD;
             let setTo = parts && getNumber(parts[1]);
-            let tiebreak_at = parseTiebreakAt(set_format);
-            let validTiebreakAt = !tiebreak_at || (tiebreak_at && !tiebreak_at.invalid);
-            let tiebreakAt = (validTiebreakAt && tiebreak_at) || setTo;
-            let tiebreakFormat = parseTiebreakFormat(set_format.split('/')[1]);
+            let tiebreakAtValue = parseTiebreakAt(setFormatString);
+            let validTiebreakAt = !tiebreakAtValue || (tiebreakAtValue && !tiebreakAtValue.invalid);
+            let tiebreakAt = (validTiebreakAt && tiebreakAtValue) || setTo;
+            let tiebreakFormat = parseTiebreakFormat(setFormatString.split('/')[1]);
             let validTiebreak = !tiebreakFormat || !tiebreakFormat.invalid;
             let result = { setTo };
             if (NoAD) result.NoAD = true;
@@ -121,10 +130,10 @@ export const matchFormatCode = function() {
       }
    }
 
-   function parseTiebreakAt(set_format) {
-      let tiebreak_at = set_format && set_format.indexOf('@') > 0 && set_format.split('@');
-      if (tiebreak_at) {
-         let tiebreakAt = getNumber(tiebreak_at[1]);
+   function parseTiebreakAt(setFormatString) {
+      let tiebreakAtValue = setFormatString && setFormatString.indexOf('@') > 0 && setFormatString.split('@');
+      if (tiebreakAtValue) {
+         let tiebreakAt = getNumber(tiebreakAtValue[1]);
          return tiebreakAt || { invalid: true }
       }
    }
@@ -133,10 +142,10 @@ export const matchFormatCode = function() {
       if (formatstring) {
          if (formatstring.indexOf('TB') === 0) {
             let parts = formatstring.match(/^TB(\d+)([A-Za-z]*)/);
-            let tiebreak_to = parts && parts[1];
+            let tiebreakToString = parts && parts[1];
             let NoAD = parts && isNoAD(parts[2]);
             let validNoAD = (!parts || !parts[2]) || NoAD;
-            let tiebreakTo = getNumber(tiebreak_to);
+            let tiebreakTo = getNumber(tiebreakToString);
             if (tiebreakTo && validNoAD) {
                let result = { tiebreakTo };
                if (NoAD) result.NoAD = true;
