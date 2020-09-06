@@ -1,4 +1,4 @@
-import { matchFormatCode } from './matchFormatCode';
+import { matchUpFormatCode } from './matchUpFormatCode';
 
 let valid_formats = [
    {
@@ -139,11 +139,33 @@ let invalid_formats = [
 
 it('match format suite', () => {
    // round trip conversion tests
-   valid_formats.forEach(sf => { expect(matchFormatCode.stringify(matchFormatCode.parse(sf.format))).toEqual(sf.format); });
+   valid_formats.forEach(sf => { expect(matchUpFormatCode.stringify(matchUpFormatCode.parse(sf.format))).toEqual(sf.format); });
 
    // recognize invalid formats and return undefined
-   invalid_formats.forEach(sf => { expect(matchFormatCode.parse(sf)).toEqual(undefined); });
+   invalid_formats.forEach(sf => { expect(matchUpFormatCode.parse(sf)).toEqual(undefined); });
 
    // return expected objects
-   valid_formats.forEach(sf => { if (sf.obj) expect(matchFormatCode.parse(sf.format)).toMatchObject(sf.obj); });
+   valid_formats.forEach(sf => { if (sf.obj) expect(matchUpFormatCode.parse(sf.format)).toMatchObject(sf.obj); });
+});
+
+it('handles tiebreakAt: false and tiebreakFormat/tiebreakTo: false', () => {
+   let testFormat = {
+      bestOf: 3,
+      finalSetFormat: {
+         noTiebreak: true,
+         setTo: 6,
+         tiebreakAt: false,
+         tiebreakFormat: {tiebreakTo: false}
+      },
+      setFormat: {
+         noTiebreak: true,
+         setTo: 6,
+         tiebreakAt: 6,
+         tiebreakFormat: {tiebreakTo: false}
+      }
+   }
+
+   let result = matchUpFormatCode.stringify(testFormat);
+   expect(result).toEqual('SET3-S:6-F:6');
+
 });
