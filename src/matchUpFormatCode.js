@@ -12,7 +12,7 @@ const setTypes = {
    'F': FINAL
 };
 
-export const matchUpFormatCode = function() {
+const matchUpFormatCode = function() {
    let fx = {};
 
    fx.stringify = (matchformatobject) => {
@@ -176,3 +176,5 @@ export const matchUpFormatCode = function() {
    return fx;
 
 }();
+
+exports.matchUpFormatCode = matchUpFormatCode;
