@@ -1,6 +1,6 @@
 {
   "name": "tods-matchup-format-code",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "parse and stringify methods for working with TODS matchUp Format Codes",
   "keywords": [
     "example",

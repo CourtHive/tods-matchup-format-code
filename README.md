@@ -4,13 +4,23 @@ The **[Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/T
 
 ```SET3-S:6/TB7``` is the TODS representation for "Best 2 Out Of 3 Sets (Win By Two) 6 games with Tiebreak to 7"
 
+## Installation
+
+```npm install tods-matchup-format-code```
+
+## Use
+
+```js
+import { matchUpFormatCode } from 'tods-matchup-format-code'
+
+let parsedCode = matchUpFormatCode.parse('SET3-S:6/TB7');
+```
+
 ## matchUpFormatCode.parse()
 
 Converts a TODS MatchUp Format Code into JSON
 
-```matchUpFormatCode.parse('SET3-S:6/TB7')```
-
-results in:
+Parsing 'SET3-S:6/TB7' results in:
 
 ```js
 {
