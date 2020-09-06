@@ -1,6 +1,6 @@
 {
   "name": "tods-matchup-format-code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "parse and stringify methods for working with TODS matchUp Format Codes",
   "keywords": [
     "example",
@@ -12,7 +12,7 @@
     "url": "https://github.com/CourtHive/MatchUpFormatCode/issues",
     "email": "support@CourtHive.com"
   },
-  "main": "matchUpFormatCode.js",
+  "main": "src/matchUpFormatCode.js",
   "scripts": {
     "test": "jest"
   },
