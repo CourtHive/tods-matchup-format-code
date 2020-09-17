@@ -115,32 +115,73 @@ const validFormats = [
       setFormat: { setTo: 8, tiebreakAt: 7, tiebreakFormat: { tiebreakTo: 7 } }
     }
   },
-  /*
-   {
-      name: '3 timed sets',
-      format: 'SET3-S:T20-F:T60',
-      obj: {
-         bestOf: 3,
-         setFormat: { timed: true, minutes:  20 },
-         finalSetFormat: { timed: true, minutes: 60}
-      }
-   },
-   */
+  {
+    name: "3 timed sets",
+    format: "SET3-S:T20-F:T60",
+    obj: {
+      bestOf: 3,
+      setFormat: { timed: true, minutes: 20 },
+      finalSetFormat: { timed: true, minutes: 60 }
+    }
+  },
+  {
+    format: "SET1-S:T120",
+    obj: {
+      bestOf: 1,
+      setFormat: { timed: true, minutes: 120 }
+    }
+  },
+  {
+    format: "SET1-S:T90",
+    obj: {
+      bestOf: 1,
+      setFormat: { timed: true, minutes: 90 }
+    }
+  },
+  {
+    format: "SET1-S:T60",
+    obj: {
+      bestOf: 1,
+      setFormat: { timed: true, minutes: 60 }
+    }
+  },
+  {
+    format: "SET1-S:T30",
+    obj: {
+      bestOf: 1,
+      setFormat: { timed: true, minutes: 30 }
+    }
+  }
+];
+
+const singleSetTimed = [
   {
     format: "T120",
-    obj: { timed: true, minutes: 120 }
+    obj: {
+      bestOf: 1,
+      setFormat: { timed: true, minutes: 120 }
+    }
   },
   {
     format: "T90",
-    obj: { timed: true, minutes: 90 }
+    obj: {
+      bestOf: 1,
+      setFormat: { timed: true, minutes: 90 }
+    }
   },
   {
     format: "T60",
-    obj: { timed: true, minutes: 60 }
+    obj: {
+      bestOf: 1,
+      setFormat: { timed: true, minutes: 60 }
+    }
   },
   {
     format: "T30",
-    obj: { timed: true, minutes: 30 }
+    obj: {
+      bestOf: 1,
+      setFormat: { timed: true, minutes: 30 }
+    }
   }
 ];
 
@@ -169,15 +210,19 @@ it("match format suite", () => {
     ).toEqual(sf.format);
   });
 
-  // recognize invalid formats and return undefined
-  invalidFormats.forEach(sf => {
-    expect(matchUpFormatCode.parse(sf)).toEqual(undefined);
-  });
-
   // return expected objects
   validFormats.forEach(sf => {
     if (sf.obj)
       expect(matchUpFormatCode.parse(sf.format)).toMatchObject(sf.obj);
+  });
+
+  singleSetTimed.forEach(sf => {
+    expect(matchUpFormatCode.parse(sf.format)).toEqual(sf.obj);
+  });
+
+  // recognize invalid formats and return undefined
+  invalidFormats.forEach(sf => {
+    expect(matchUpFormatCode.parse(sf)).toEqual(undefined);
   });
 });
 
