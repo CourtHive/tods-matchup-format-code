@@ -6,6 +6,8 @@ The **[Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/T
 
 This package includes two methods to make it easier to work with TODS MatchUp Format Codes in projects related to tennis, by transforming valid format codes into JSON and valid JSON objects back into format codes.
 
+[Online Documentation with examples](https://courthive.github.io/tods-matchup-format-code/)
+
 ## Installation
 
 ```sh
