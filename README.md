@@ -8,7 +8,9 @@ This package includes two methods to make it easier to work with TODS MatchUp Fo
 
 ## Installation
 
-```npm install tods-matchup-format-code```
+```sh
+npm install tods-matchup-format-code
+```
 
 ## Use
 
