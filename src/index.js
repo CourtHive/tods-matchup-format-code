@@ -2,15 +2,7 @@
  * TODO: if the final set is NOT different then don't include in string
  */
 
-const SET = "SET";
-const NOAD = "NOAD";
-const TIMED = "timed";
-const FINAL = "final";
-const NORMAL = "normal";
-const setTypes = {
-  S: NORMAL,
-  F: FINAL
-};
+import { SET, NOAD, TIMED, setTypes } from "./constants";
 
 const matchUpFormatCode = (function() {
   const fx = {};
@@ -107,7 +99,13 @@ const matchUpFormatCode = (function() {
           : matchformatcode.indexOf(SET) === 0
           ? SET
           : "";
-      if (type === TIMED) return parseTimedSet(matchformatcode);
+      if (type === TIMED) {
+        const parsedFormat = {
+          bestOf: 1,
+          setFormat: parseTimedSet(matchformatcode)
+        };
+        if (parsedFormat.setFormat) return parsedFormat;
+      }
       if (type === SET) return setsMatch(matchformatcode);
     }
   };
@@ -138,7 +136,10 @@ const matchUpFormatCode = (function() {
         if (tiebreakSet)
           return { tiebreakSet: parseTiebreakFormat(setFormatString) };
         const timedSet = setFormatString.indexOf("T") === 0;
-        if (timedSet) return parseTimedSet(setFormatString);
+        if (timedSet) {
+          const timedSetFormat = parseTimedSet(setFormatString);
+          return timedSetFormat;
+        }
         const parts = formatstring.match(/^[FS]{1}:(\d+)([A-Za-z]*)/);
         const NoAD = (parts && isNoAD(parts[2])) || false;
         const validNoAD = !parts || !parts[2] || NoAD;
