@@ -12,13 +12,14 @@ export default {
   themeConfig: {
     showPlaygroundEditor: false,
     colors: {
-      primary: "#000000"
-    }
+      primary: "#000000",
+    },
   },
   menu: [
     "Readme",
     {
-      name: "Examples"
-    }
-  ]
+      name: "Examples",
+      menu: ["Configurator"],
+    },
+  ],
 };

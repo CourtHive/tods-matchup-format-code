@@ -1,6 +1,8 @@
 # dev
 *.code-workspace
 node_modules
+.cache
+.docz
 
 # build
 dist
