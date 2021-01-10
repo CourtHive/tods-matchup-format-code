@@ -2,7 +2,7 @@ export function matchUpFormats() {
   const defaultMatchFormat = "SET3-S:6/TB7";
 
   const formats = [
-    { key: "custom", name: i18n.t("scoring_format.custom"), desc: "" },
+    { key: "custom", name: "Custom", desc: "" },
     // Best of 3 tiebreak sets
     {
       key: "standard",

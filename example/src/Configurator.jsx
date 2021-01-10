@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useStyles } from "./style";
 
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+
+import { matchUpFormatCode } from "tods-matchup-format-code";
+import MatchUpFormatForm from "./matchUpFormat/MatchUpFormatForm";
+
 const Configurator = () => {
   const classes = useStyles();
   const [matchUpFormatParsed, setMatchUpFormatParsed] = useState(
@@ -15,7 +21,7 @@ const Configurator = () => {
         <Typography variant="h5" component="h3">
           {matchUpFormatCode.stringify(matchUpFormatParsed)}
         </Typography>
-        <Configurator
+        <MatchUpFormatForm
           matchUpFormatParsed={matchUpFormatParsed}
           onChange={handleOnChange}
         />
