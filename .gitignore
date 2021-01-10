@@ -3,6 +3,7 @@
 node_modules
 .cache
 .docz
+.DS_STORE
 
 # build
 dist
