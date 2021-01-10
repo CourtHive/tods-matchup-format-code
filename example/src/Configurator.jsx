@@ -13,11 +13,12 @@ const Configurator = () => {
     <>
       <Paper className={classes.paper} elevation={2}>
         <Typography variant="h5" component="h3">
-          <Configurator
-            matchUpFormatParsed={matchUpFormatParsed}
-            onChange={handleOnChange}
-          />
+          {matchUpFormatCode.stringify(matchUpFormatParsed)}
         </Typography>
+        <Configurator
+          matchUpFormatParsed={matchUpFormatParsed}
+          onChange={handleOnChange}
+        />
       </Paper>
     </>
   );
