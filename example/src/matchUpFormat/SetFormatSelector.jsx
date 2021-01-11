@@ -109,7 +109,7 @@ const SetFormatSelector = ({
   // populates the tiebreak to selector
   const tiebreakTo = [5, 7, 9, 10, 12].map((key) => ({
     key,
-    name: `TB ${key}`,
+    name: `TB to: ${key}`,
   }));
 
   // populates the tiebreak at selector
