@@ -1,5 +1,5 @@
 export function matchUpFormats() {
-  const defaultMatchFormat = "SET3-S:6/TB7";
+  const defaultMatchUpFormat = "SET3-S:6/TB7";
 
   const formats = [
     { key: "custom", name: "Custom", desc: "" },
@@ -115,11 +115,11 @@ export function matchUpFormats() {
   const lookup = (key) =>
     formats.reduce(
       (p, c) => (c.key === key ? c.format : p),
-      defaultMatchFormat
+      defaultMatchUpFormat
     );
   const sortedFormats = formats.sort((a, b) =>
     a.name > b.name ? 1 : a.name < b.name ? -1 : 0
   );
 
-  return { formats: sortedFormats, lookup, default: defaultMatchFormat };
+  return { formats: sortedFormats, lookup, default: defaultMatchUpFormat };
 }

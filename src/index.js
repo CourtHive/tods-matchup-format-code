@@ -7,25 +7,25 @@ import { SET, NOAD, TIMED, setTypes } from "./constants";
 const matchUpFormatCode = (function() {
   const fx = {};
 
-  fx.stringify = matchformatobject => {
-    if (matchformatobject && typeof matchformatobject === "object") {
-      if (matchformatobject.timed && !isNaN(matchformatobject.minutes))
-        return timedSetFormat(matchformatobject);
-      if (matchformatobject.bestOf && matchformatobject.setFormat)
-        return getSetFormat(matchformatobject);
+  fx.stringify = (matchUpFormatObject) => {
+    if (matchUpFormatObject && typeof matchUpFormatObject === "object") {
+      if (matchUpFormatObject.timed && !isNaN(matchUpFormatObject.minutes))
+        return timedSetFormat(matchUpFormatObject);
+      if (matchUpFormatObject.bestOf && matchUpFormatObject.setFormat)
+        return getSetFormat(matchUpFormatObject);
     }
   };
 
-  function timedSetFormat(matchformatobject) {
-    return `T${matchformatobject.minutes}`;
+  function timedSetFormat(matchUpFormatObject) {
+    return `T${matchUpFormatObject.minutes}`;
   }
 
-  function getSetFormat(matchformatobject) {
-    const bestOfValue = getNumber(matchformatobject.bestOf);
+  function getSetFormat(matchUpFormatObject) {
+    const bestOfValue = getNumber(matchUpFormatObject.bestOf);
     const bestOfCode = (bestOfValue && `${SET}${bestOfValue}`) || "";
-    const setCountValue = stringifySet(matchformatobject.setFormat);
+    const setCountValue = stringifySet(matchUpFormatObject.setFormat);
     const setCode = (setCountValue && `S:${setCountValue}`) || "";
-    const finalSetCountValue = stringifySet(matchformatobject.finalSetFormat);
+    const finalSetCountValue = stringifySet(matchUpFormatObject.finalSetFormat);
     const finalSetCode =
       (bestOfValue > 1 &&
         finalSetCountValue &&
@@ -39,7 +39,7 @@ const matchUpFormatCode = (function() {
       (!finalSetCountValue || !finalSetCountValue.invalid);
 
     if (valid) {
-      return [bestOfCode, setCode, finalSetCode].filter(f => f).join("-");
+      return [bestOfCode, setCode, finalSetCode].filter((f) => f).join("-");
     }
   }
 
@@ -91,22 +91,22 @@ const matchUpFormatCode = (function() {
     }
   }
 
-  fx.parse = matchformatcode => {
-    if (matchformatcode && typeof matchformatcode === "string") {
+  fx.parse = (matchUpFormatCode) => {
+    if (matchUpFormatCode && typeof matchUpFormatCode === "string") {
       const type =
-        matchformatcode.indexOf("T") === 0
+        matchUpFormatCode.indexOf("T") === 0
           ? "timed"
-          : matchformatcode.indexOf(SET) === 0
+          : matchUpFormatCode.indexOf(SET) === 0
           ? SET
           : "";
       if (type === TIMED) {
         const parsedFormat = {
           bestOf: 1,
-          setFormat: parseTimedSet(matchformatcode)
+          setFormat: parseTimedSet(matchUpFormatCode),
         };
         if (parsedFormat.setFormat) return parsedFormat;
       }
-      if (type === SET) return setsMatch(matchformatcode);
+      if (type === SET) return setsMatch(matchUpFormatCode);
     }
   };
 

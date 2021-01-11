@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Grid from "@material-ui/core/Grid";
 import { matchUpFormatCode } from "tods-matchup-format-code";
@@ -14,14 +14,7 @@ import { matchUpFormats } from "./matchUpFormats";
 const MatchUpFormatForm = ({ disabled, matchUpFormatParsed, onChange }) => {
   const classes = useStyles();
 
-  const defaultMatchFormats = matchUpFormats().formats;
-  const matchFormatString = matchUpFormatCode.stringify(matchUpFormatParsed);
-  const isNotCustom = defaultMatchFormats.find(
-    (defaultMatchFormat) => defaultMatchFormat.format === matchFormatString
-  );
-  const [scoringMode, setScoringMode] = useState(
-    isNotCustom ? "standard" : "custom"
-  );
+  const defaultMatchUpFormats = matchUpFormats().formats;
 
   const updateMatchUpFormat = (matchUpFormat) => {
     onChange && onChange(matchUpFormat);
@@ -33,33 +26,26 @@ const MatchUpFormatForm = ({ disabled, matchUpFormatParsed, onChange }) => {
 
   const scoringFormatChanged = (e) => {
     const key = e && e.target && e.target.value;
-    const matchUpFormat = defaultMatchFormats.find(
-      (defaultMatchFormat) => defaultMatchFormat.key === key
+    const matchUpFormat = defaultMatchUpFormats.find(
+      (defaultMatchUpFormat) => defaultMatchUpFormat.key === key
     )?.format;
     const matchUpFormatParsed = matchUpFormatCode.parse(matchUpFormat);
-    if (matchUpFormat) {
-      setScoringMode("standard");
-      updateMatchUpFormat(matchUpFormatParsed);
-    } else {
-      setScoringMode("custom");
-    }
+    updateMatchUpFormat(matchUpFormatParsed);
   };
 
-  const activeMatchFormat = () => {
-    if (scoringMode === "custom") return "custom";
+  const activeMatchUpFormat = () => {
     return (
-      defaultMatchFormats.reduce(
+      defaultMatchUpFormats.reduce(
         (p, c) =>
           c.format === matchUpFormatCode.stringify(matchUpFormatParsed)
             ? c.key
             : p,
         undefined
-      ) || "standard"
+      ) || "custom"
     );
   };
 
   const renderCustomScoring = () => {
-    if (scoringMode !== "custom") return null;
     return (
       <>
         <Grid
@@ -90,10 +76,10 @@ const MatchUpFormatForm = ({ disabled, matchUpFormatParsed, onChange }) => {
     );
   };
 
-  function renderMatchFormat(f) {
+  function renderMatchUpFormat(f) {
     return (
       <MuiMenuItem key={f.key} value={f.key}>
-        <ul className={classes.matchFormatList}>
+        <ul className={classes.matchUpFormatList}>
           <li className={classes.matchUpFormat}>{f.name}</li>
           {f.desc ? (
             <li key={`${f.key}_1`} style={{ fontSize: 10 }}>
@@ -122,10 +108,10 @@ const MatchUpFormatForm = ({ disabled, matchUpFormatParsed, onChange }) => {
         >
           <InputLabel>{"Scoring"}</InputLabel>
           <MuiSelect
-            value={activeMatchFormat()}
+            value={activeMatchUpFormat()}
             onChange={scoringFormatChanged}
           >
-            {defaultMatchFormats.map(renderMatchFormat)}
+            {defaultMatchUpFormats.map(renderMatchUpFormat)}
           </MuiSelect>
         </FormControl>
       </>
