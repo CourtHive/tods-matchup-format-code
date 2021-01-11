@@ -6,8 +6,8 @@ export const useStyles = makeStyles(() => ({
     paddingLeft: "2em",
     paddingRight: "2em",
     paddingBottom: "2em",
-    marginTop: "5em",
-    marginLeft: "5em",
+    marginTop: "2em",
+    marginLeft: "2em",
     maxWidth: "40em",
   },
 }));
