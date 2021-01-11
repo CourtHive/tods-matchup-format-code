@@ -24,6 +24,24 @@ export function matchUpFormats() {
       format: "SET1-S:6/TB7",
       desc: "1 Set to 6 Games, Tiebreak to 7",
     },
+    {
+      key: "wimbledon2018",
+      name: "Wimbledon 2018",
+      format: "SET5-S:6/TB7-F:6",
+      desc: "Best of 5 tiebreak sets, final set no tiebreak",
+    },
+    {
+      key: "wimbledon2019",
+      name: "Wimbledon 2019",
+      format: "SET5-S:6/TB7-F:6/TB7@12",
+      desc: "Best of 5 tiebreak sets, final set tiebreak at 12",
+    },
+    {
+      key: "Aus2019",
+      name: "Australian Open 2019",
+      format: "SET5-S:6/TB7-F:6/TB10",
+      desc: "Best of 5 tiebreak sets, final set tiebreak at 12",
+    },
     // Best of 3 sets to 4
     {
       key: "short",
