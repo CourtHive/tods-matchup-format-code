@@ -8,8 +8,6 @@ This package includes two methods to make it easier to work with TODS MatchUp Fo
 
 [Online Documentation with examples](https://courthive.github.io/tods-matchup-format-code/)
 
-[Online Interactve MatchUp Format Code Generator](https://CourtHive.com/mfc)
-
 ## Installation
 
 ```sh
