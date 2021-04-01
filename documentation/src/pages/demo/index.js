@@ -1,0 +1,24 @@
+import React from "react";
+import Layout from "@theme/Layout";
+
+import Configurator from "./Configurator";
+
+function Demo() {
+  return (
+    <Layout title="Hello">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "50vh",
+          fontSize: "20px",
+        }}
+      >
+        <Configurator />
+      </div>
+    </Layout>
+  );
+}
+
+export default Demo;
