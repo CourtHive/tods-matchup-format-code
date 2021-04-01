@@ -15,7 +15,7 @@ The goal of the Tennis Open Data Standards (TODS) project is to create a single 
 
 :::
 
-[Interactive Demo](../demo)
+[Interactive Example](../example)
 
 ## Installation
 

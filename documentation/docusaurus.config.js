@@ -24,8 +24,8 @@ module.exports = {
           position: "left",
         },
         {
-          href: "/demo",
-          label: "Demo",
+          href: "/example",
+          label: "Example",
           position: "left",
         },
         // { to: "blog", label: "Blog", position: "left" },
