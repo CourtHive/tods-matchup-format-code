@@ -18,7 +18,7 @@
     "@types/react-dom": "16.9.10",
     "eslint": "7.20.0",
     "eslint-config-prettier": "8.1.0",
-    "eslint-plugin-jest": "24.1.5",
+    "eslint-plugin-jest": "24.3.2",
     "parcel": "1.12.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
