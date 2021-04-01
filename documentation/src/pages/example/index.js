@@ -5,7 +5,7 @@ import Configurator from "../../example/Configurator";
 
 function Example() {
   return (
-    <Layout title="Hello">
+    <Layout title="Example">
       <div
         style={{
           display: "flex",
