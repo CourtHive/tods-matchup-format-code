@@ -27,7 +27,8 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test",
-    "prepare": "tsdx build"
+    "prepare": "tsdx build",
+    "doc:publish": "cd documentation && GIT_USER=CourtHive USE_SSH=true yarn deploy"
   },
   "repository": {
     "type": "git",
