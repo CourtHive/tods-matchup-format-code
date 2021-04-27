@@ -26,12 +26,12 @@ npm install tods-matchup-format-code
 ## Use
 
 ```js
-import { matchUpFormatCode } from "tods-matchup-format-code";
+import { matchUpFormatCode } from 'tods-matchup-format-code';
 
-let parsedCode = matchUpFormatCode.parse("SET3-S:6/TB7");
+let parsedCode = matchUpFormatCode.parse('SET3-S:6/TB7');
 ```
 
-## matchUpFormatCode.parse()
+## matchUpFormatCode.parse(matchUpFormat)
 
 Converts a TODS MatchUp Format Code into JSON
 
@@ -64,6 +64,10 @@ Parsing 'SET3-S:6/TB7-F:TB10' results in:
 }
 ```
 
-## matchUpFormatCode.stringify()
+## matchUpFormatCode.stringify(formatObject)
 
 Converts compliant JSON into a TODS MatchUp Format Code, the reverse of the **_.parse()_** method.
+
+## matchUpFormatCode.isValidMatchUpFormat(matchUpFormat)
+
+Returns **boolean** indicating whether `matchUpFormat` is valid.

@@ -1,33 +1,33 @@
-import { matchUpFormatCode } from ".";
+import { matchUpFormatCode } from '.';
 
 const validFormats = [
   {
-    name: "Standard Match",
-    format: "SET3-S:6/TB7",
+    name: 'Standard Match',
+    format: 'SET3-S:6/TB7',
     obj: {
       bestOf: 3,
       setFormat: { setTo: 6, tiebreakAt: 6, tiebreakFormat: { tiebreakTo: 7 } }
     }
   },
   {
-    name: "Short Sets",
-    format: "SET3-S:4/TB7",
+    name: 'Short Sets',
+    format: 'SET3-S:4/TB7',
     obj: {
       bestOf: 3,
       setFormat: { setTo: 4, tiebreakAt: 4, tiebreakFormat: { tiebreakTo: 7 } }
     }
   },
   {
-    name: "Fast 4",
-    format: "SET3-S:4/TB5@3",
+    name: 'Fast 4',
+    format: 'SET3-S:4/TB5@3',
     obj: {
       bestOf: 3,
       setFormat: { setTo: 4, tiebreakAt: 3, tiebreakFormat: { tiebreakTo: 5 } }
     }
   },
   {
-    name: "Wimbledon Singles 1971",
-    format: "SET5-S:6/TB9-F:6",
+    name: 'Wimbledon Singles 1971',
+    format: 'SET5-S:6/TB9-F:6',
     obj: {
       bestOf: 5,
       setFormat: { setTo: 6, tiebreakAt: 6, tiebreakFormat: { tiebreakTo: 9 } },
@@ -35,8 +35,8 @@ const validFormats = [
     }
   },
   {
-    name: "Wimbledon Singles 2018",
-    format: "SET5-S:6/TB7-F:6",
+    name: 'Wimbledon Singles 2018',
+    format: 'SET5-S:6/TB7-F:6',
     obj: {
       bestOf: 5,
       setFormat: { setTo: 6, tiebreakAt: 6, tiebreakFormat: { tiebreakTo: 7 } },
@@ -44,8 +44,8 @@ const validFormats = [
     }
   },
   {
-    name: "Wimbledon Singles 2019",
-    format: "SET5-S:6/TB7-F:6/TB7@12",
+    name: 'Wimbledon Singles 2019',
+    format: 'SET5-S:6/TB7-F:6/TB7@12',
     obj: {
       bestOf: 5,
       setFormat: { setTo: 6, tiebreakAt: 6, tiebreakFormat: { tiebreakTo: 7 } },
@@ -57,8 +57,8 @@ const validFormats = [
     }
   },
   {
-    name: "Australian Open Singles from 2019",
-    format: "SET5-S:6/TB7-F:6/TB10",
+    name: 'Australian Open Singles from 2019',
+    format: 'SET5-S:6/TB7-F:6/TB10',
     obj: {
       bestOf: 5,
       setFormat: { setTo: 6, tiebreakAt: 6, tiebreakFormat: { tiebreakTo: 7 } },
@@ -70,8 +70,8 @@ const validFormats = [
     }
   },
   {
-    name: "World Team Tennis",
-    format: "SET5-S:5NOAD/TB9NOAD@4",
+    name: 'World Team Tennis',
+    format: 'SET5-S:5NOAD/TB9NOAD@4',
     obj: {
       bestOf: 5,
       setFormat: {
@@ -83,16 +83,16 @@ const validFormats = [
     }
   },
   {
-    name: "Tiebreak Only Match",
-    format: "SET3-S:TB10",
+    name: 'Tiebreak Only Match',
+    format: 'SET3-S:TB10',
     obj: {
       bestOf: 3,
       setFormat: { tiebreakSet: { tiebreakTo: 10 } }
     }
   },
   {
-    name: "ATP Doubles",
-    format: "SET3-S:6/TB7-F:TB10",
+    name: 'ATP Doubles',
+    format: 'SET3-S:6/TB7-F:TB10',
     obj: {
       bestOf: 3,
       setFormat: { setTo: 6, tiebreakAt: 6, tiebreakFormat: { tiebreakTo: 7 } },
@@ -100,24 +100,24 @@ const validFormats = [
     }
   },
   {
-    name: "Pro Set",
-    format: "SET1-S:8/TB7",
+    name: 'Pro Set',
+    format: 'SET1-S:8/TB7',
     obj: {
       bestOf: 1,
       setFormat: { setTo: 8, tiebreakAt: 8, tiebreakFormat: { tiebreakTo: 7 } }
     }
   },
   {
-    name: "College Pro Set",
-    format: "SET1-S:8/TB7@7",
+    name: 'College Pro Set',
+    format: 'SET1-S:8/TB7@7',
     obj: {
       bestOf: 1,
       setFormat: { setTo: 8, tiebreakAt: 7, tiebreakFormat: { tiebreakTo: 7 } }
     }
   },
   {
-    name: "3 timed sets",
-    format: "SET3-S:T20-F:T60",
+    name: '3 timed sets',
+    format: 'SET3-S:T20-F:T60',
     obj: {
       bestOf: 3,
       setFormat: { timed: true, minutes: 20 },
@@ -125,28 +125,28 @@ const validFormats = [
     }
   },
   {
-    format: "SET1-S:T120",
+    format: 'SET1-S:T120',
     obj: {
       bestOf: 1,
       setFormat: { timed: true, minutes: 120 }
     }
   },
   {
-    format: "SET1-S:T90",
+    format: 'SET1-S:T90',
     obj: {
       bestOf: 1,
       setFormat: { timed: true, minutes: 90 }
     }
   },
   {
-    format: "SET1-S:T60",
+    format: 'SET1-S:T60',
     obj: {
       bestOf: 1,
       setFormat: { timed: true, minutes: 60 }
     }
   },
   {
-    format: "SET1-S:T30",
+    format: 'SET1-S:T30',
     obj: {
       bestOf: 1,
       setFormat: { timed: true, minutes: 30 }
@@ -156,28 +156,28 @@ const validFormats = [
 
 const singleSetTimed = [
   {
-    format: "T120",
+    format: 'T120',
     obj: {
       bestOf: 1,
       setFormat: { timed: true, minutes: 120 }
     }
   },
   {
-    format: "T90",
+    format: 'T90',
     obj: {
       bestOf: 1,
       setFormat: { timed: true, minutes: 90 }
     }
   },
   {
-    format: "T60",
+    format: 'T60',
     obj: {
       bestOf: 1,
       setFormat: { timed: true, minutes: 60 }
     }
   },
   {
-    format: "T30",
+    format: 'T30',
     obj: {
       bestOf: 1,
       setFormat: { timed: true, minutes: 30 }
@@ -186,34 +186,45 @@ const singleSetTimed = [
 ];
 
 const invalidFormats = [
-  "",
-  "T",
-  "90",
-  "T90X",
-  "T90@",
-  "SET3-S:6/TB",
-  "SET3-S:6/TB7@",
-  "SET5-S:6/T9-F:6",
-  "SET-S:6/TB7-F:6",
-  "SET35-S:6/TB7-F:TB10",
-  "SET5-S:6/TB7-X:6/TB10",
-  "SET5-S:5NOAD/TB9NOD@4",
-  "SET5-S:5NAD/TB9NOAD@4",
-  "SET5-S:6/TB7F:6/TB7@12"
+  '',
+  'T',
+  '90',
+  'T90X',
+  'T90@',
+  'SET3-S:6/TB',
+  'SET3-S:6/TB7@',
+  'SET5-S:6/T9-F:6',
+  'SET-S:6/TB7-F:6',
+  'SET35-S:6/TB7-F:TB10',
+  'SET5-S:6/TB7-X:6/TB10',
+  'SET5-S:5NOAD/TB9NOD@4',
+  'SET5-S:5NAD/TB9NOAD@4',
+  'SET5-S:6/TB7F:6/TB7@12'
 ];
 
-it("match format suite", () => {
+it('recognizes valid formats', () => {
+  validFormats.forEach(validFormat => {
+    const valid = matchUpFormatCode.isValidMatchUpFormat(validFormat.format);
+    expect(valid).toEqual(true);
+  });
+});
+
+it('recognizes invalid formats', () => {
+  invalidFormats.forEach(matchUpFormat => {
+    const valid = matchUpFormatCode.isValidMatchUpFormat(matchUpFormat);
+    expect(valid).toEqual(false);
+  });
+});
+
+it('match format suite', () => {
   // round trip conversion tests
   validFormats.forEach(sf => {
-    expect(
-      matchUpFormatCode.stringify(matchUpFormatCode.parse(sf.format))
-    ).toEqual(sf.format);
+    expect(matchUpFormatCode.stringify(matchUpFormatCode.parse(sf.format))).toEqual(sf.format);
   });
 
   // return expected objects
   validFormats.forEach(sf => {
-    if (sf.obj)
-      expect(matchUpFormatCode.parse(sf.format)).toMatchObject(sf.obj);
+    if (sf.obj) expect(matchUpFormatCode.parse(sf.format)).toMatchObject(sf.obj);
   });
 
   singleSetTimed.forEach(sf => {
@@ -226,7 +237,7 @@ it("match format suite", () => {
   });
 });
 
-it("handles tiebreakAt: false and tiebreakFormat/tiebreakTo: false", () => {
+it('handles tiebreakAt: false and tiebreakFormat/tiebreakTo: false', () => {
   const testFormat = {
     bestOf: 3,
     finalSetFormat: {
@@ -244,12 +255,12 @@ it("handles tiebreakAt: false and tiebreakFormat/tiebreakTo: false", () => {
   };
 
   const result = matchUpFormatCode.stringify(testFormat);
-  expect(result).toEqual("SET3-S:6-F:6");
+  expect(result).toEqual('SET3-S:6-F:6');
 });
 
-it("parse and stringify format for multiple timed sets", () => {
+it('parse and stringify format for multiple timed sets', () => {
   const scoreFormat = {
-    format: "SET3-S:T20-F:T60",
+    format: 'SET3-S:T20-F:T60',
     obj: {
       bestOf: 3,
       setFormat: { timed: true, minutes: 20 },
