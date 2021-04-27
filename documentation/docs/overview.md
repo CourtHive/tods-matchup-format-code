@@ -31,13 +31,17 @@ import { matchUpFormatCode } from 'tods-matchup-format-code';
 let parsedCode = matchUpFormatCode.parse('SET3-S:6/TB7');
 ```
 
-## matchUpFormatCode.parse(matchUpFormat)
+## Methods
+
+### parse
 
 Converts a TODS MatchUp Format Code into JSON
 
-Parsing 'SET3-S:6/TB7' results in:
-
 ```js
+matchUpFormatCode.parse('SET3-S:6/TB7')
+
+// results in...
+
 {
   bestOf: 3,
   setFormat: { setTo: 6, tiebreakFormat: { tiebreakTo: 7 }, tiebreakAt: 6 }
@@ -64,10 +68,18 @@ Parsing 'SET3-S:6/TB7-F:TB10' results in:
 }
 ```
 
-## matchUpFormatCode.stringify(formatObject)
+### stringify
 
 Converts compliant JSON into a TODS MatchUp Format Code, the reverse of the **_.parse()_** method.
 
-## matchUpFormatCode.isValidMatchUpFormat(matchUpFormat)
+```js
+machUpFormatCode.stringify(matchUpFormatObject);
+```
+
+### isValidMatchUpFormat
 
 Returns **boolean** indicating whether `matchUpFormat` is valid.
+
+```js
+matchUpFormatCode.isValidMatchUpFormat('SET3-S:6/TB7');
+```
