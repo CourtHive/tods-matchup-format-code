@@ -1,4 +1,4 @@
-import { matchUpFormatCode } from '.';
+import { matchUpFormatCode } from '..';
 
 const validFormats = [
   {
@@ -216,6 +216,13 @@ it('recognizes invalid formats', () => {
   });
 });
 
+it('recognizes valid timed formats', () => {
+  singleSetTimed.forEach(({ format }) => {
+    const valid = matchUpFormatCode.isValidMatchUpFormat(format);
+    expect(valid).toEqual(true);
+  });
+});
+
 it('match format suite', () => {
   // round trip conversion tests
   validFormats.forEach(sf => {
@@ -255,7 +262,7 @@ it('handles tiebreakAt: false and tiebreakFormat/tiebreakTo: false', () => {
   };
 
   const result = matchUpFormatCode.stringify(testFormat);
-  expect(result).toEqual('SET3-S:6-F:6');
+  expect(result).toEqual('SET3-S:6');
 });
 
 it('parse and stringify format for multiple timed sets', () => {
@@ -272,4 +279,13 @@ it('parse and stringify format for multiple timed sets', () => {
 
   const stringified = matchUpFormatCode.stringify(scoreFormat.obj);
   expect(stringified).toEqual(scoreFormat.format);
+});
+
+it('will not include final set code when equivalent to other sets', () => {
+  const obj = {
+    bestOf: 3,
+    setFormat: { setTo: 6, tiebreakAt: 6, tiebreakFormat: { tiebreakTo: 7 } },
+    finalSetFormat: { setTo: 6, tiebreakAt: 6, tiebreakFormat: { tiebreakTo: 7 } }
+  };
+  expect(matchUpFormatCode.stringify(obj)).toEqual('SET3-S:6/TB7');
 });
