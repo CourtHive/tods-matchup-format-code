@@ -3,7 +3,7 @@ title: matchUpFormat
 slug: /
 ---
 
-The **[Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/TODS/pages/1272840309/MatchUp+Format+Code)** MatchUp Format Codes provide a concise way of describing methods for scoring tennis matches that is both human and machine readble.
+The **[Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/TODS/pages/1272840309/MatchUp+Format+Code)** MatchUp Format Codes provide a concise way of describing methods for scoring tennis matches that is both human and machine redable.
 
 `SET3-S:6/TB7` is the TODS representation for "Best 2 Out Of 3 Sets (Win By Two) 6 games with Tiebreak to 7
 
