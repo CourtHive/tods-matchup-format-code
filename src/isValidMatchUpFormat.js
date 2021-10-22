@@ -12,5 +12,16 @@ export function isValidMatchUpFormat(matchUpFormat) {
   ) {
     return stringify(parsedFormat).slice(7) === matchUpFormat;
   }
-  return stringify(parsedFormat) === matchUpFormat;
+
+  const setsParts = matchUpFormat.match(/-S(\d+)+:TB(\d+)@(\d*)([A-Za-z]*)/);
+  const setsTo = setsParts?.[0];
+  const tiebreakAt = setsParts?.[2];
+
+  const finalSetParts = matchUpFormat.match(/-S(\d+)+:TB(\d+)@(\d*)([A-Za-z]*)/);
+  const finalSetTo = finalSetParts?.[0];
+  const finalTiebreakAt = finalSetParts?.[2];
+
+  const preserveRedundant = (setsParts && setsTo === tiebreakAt) || (finalSetParts && finalSetTo === finalTiebreakAt);
+
+  return stringify(parsedFormat, preserveRedundant) === matchUpFormat;
 }

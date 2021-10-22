@@ -1,9 +1,10 @@
 import { SET, NOAD } from './constants';
 
-export function stringify(matchUpFormatObject) {
+export function stringify(matchUpFormatObject, preserveRedundant) {
   if (matchUpFormatObject && typeof matchUpFormatObject === 'object') {
     if (matchUpFormatObject.timed && !isNaN(matchUpFormatObject.minutes)) return timedSetFormat(matchUpFormatObject);
-    if (matchUpFormatObject.bestOf && matchUpFormatObject.setFormat) return getSetFormat(matchUpFormatObject);
+    if (matchUpFormatObject.bestOf && matchUpFormatObject.setFormat)
+      return getSetFormat(matchUpFormatObject, preserveRedundant);
   }
 }
 
@@ -15,12 +16,12 @@ function timedSetFormat(matchUpFormatObject) {
   return `T${matchUpFormatObject.minutes}`;
 }
 
-function getSetFormat(matchUpFormatObject) {
+function getSetFormat(matchUpFormatObject, preserveRedundant) {
   const bestOfValue = getNumber(matchUpFormatObject.bestOf);
   const bestOfCode = (bestOfValue && `${SET}${bestOfValue}`) || '';
-  const setCountValue = stringifySet(matchUpFormatObject.setFormat);
+  const setCountValue = stringifySet(matchUpFormatObject.setFormat, preserveRedundant);
   const setCode = (setCountValue && `S:${setCountValue}`) || '';
-  const finalSetCountValue = stringifySet(matchUpFormatObject.finalSetFormat);
+  const finalSetCountValue = stringifySet(matchUpFormatObject.finalSetFormat, preserveRedundant);
   const finalSetCode =
     (bestOfValue > 1 &&
     finalSetCountValue &&
@@ -36,7 +37,7 @@ function getSetFormat(matchUpFormatObject) {
   }
 }
 
-function stringifySet(setObject) {
+function stringifySet(setObject, preserveRedundant) {
   if (setObject) {
     if (typeof setObject === 'object') {
       if (setObject.timed) return timedSetFormat(setObject);
@@ -47,7 +48,8 @@ function stringifySet(setObject) {
         const setTiebreakValue = tiebreakFormat(setObject.tiebreakFormat);
         const setTiebreakCode = (setTiebreakValue && !setTiebreakValue.invalid && `/${setTiebreakValue}`) || '';
         const tiebreakAtValue = getNumber(setObject.tiebreakAt);
-        const tiebreakAtCode = (tiebreakAtValue && tiebreakAtValue !== setToValue && `@${tiebreakAtValue}`) || '';
+        const tiebreakAtCode =
+          (tiebreakAtValue && (preserveRedundant || tiebreakAtValue !== setToValue) && `@${tiebreakAtValue}`) || '';
         const valid = !setTiebreakValue || !setTiebreakValue.invalid;
         if (valid) {
           return `${setToValue}${NoAD}${setTiebreakCode}${tiebreakAtCode}`;
