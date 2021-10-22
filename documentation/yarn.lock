@@ -8737,10 +8737,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-matchup-format-code@1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.5.tgz#3d1decf6e34fa23fe33ac0c9043055a004b641ae"
-  integrity sha512-zeeNb0gAM0y8kpNM+BBX/YBDbIipAneL5+cCb7KWMNWE5i30d96+uar3Yudw99JAAZWIbyAhM38+QJ1GXcdVpQ==
+tods-matchup-format-code@1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.6.tgz#87593980ce364a3fa0d8b7d0d737d0d1abd09671"
+  integrity sha512-LBCeQfiNAj6n1dFTlJZg06gHhsUN9/oZwf4AsrwKjEyBqGNnttyItK5fJtvgb7w4GUTbTGc3/Kb30JRC4aawwA==
 
 toidentifier@1.0.0:
   version "1.0.0"
