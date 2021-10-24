@@ -1,6 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Configurator from "./Configurator";
+import Configurator from './Configurator';
 
-ReactDOM.render(<Configurator />, document.getElementById("root"));
+ReactDOM.render(<Configurator />, document.getElementById('root'));
