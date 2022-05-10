@@ -38,8 +38,8 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@babel/core": "7.15.8",
-    "@babel/preset-env": "7.15.8",
+    "@babel/core": "7.17.10",
+    "@babel/preset-env": "7.17.10",
     "@types/jest": "26.0.24",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
