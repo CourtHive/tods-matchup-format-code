@@ -8506,10 +8506,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-matchup-format-code@1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.7.tgz#939c25306ce4120db4f8cf0548f6d239904d5bab"
-  integrity sha512-eHig/CQzVbmonJO78itToQ3IsVXnQaHNK0ZuNozEwGOlQy5DCAoXvH5tNEYARIaGBkrseUTKPZ9EiP5donWsFw==
+tods-matchup-format-code@1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.8.tgz#a36901ded77eb415df8a8e816cf3fd695a6cb6d2"
+  integrity sha512-Br7LcBRz7SMWCbAqZOAEy0mNjj1jWAAlAX8aVCVCUZYSF1q/YNwo/h+MRrCvXEyOf8Z2BMwZ25lm6zMuF6jpUg==
 
 toidentifier@1.0.0:
   version "1.0.0"
